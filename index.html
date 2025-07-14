@@ -98,6 +98,8 @@
             display: flex;
             gap: 20px;
             list-style: none;
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
         .nav-links a {
@@ -453,11 +455,13 @@
         @media (max-width: 768px) {
             .nav-links {
                 gap: 10px;
+                flex-direction: row; /* Ensure horizontal layout on mobile */
             }
 
             .nav-links a {
                 padding: 8px 16px;
                 font-size: 0.9rem;
+                white-space: nowrap; /* Prevent text wrapping */
             }
 
             .hero-name {
@@ -526,15 +530,18 @@
                 font-size: 1rem;
             }
 
+            /* Keep navigation horizontal even on very small screens */
             .nav-links {
-                flex-direction: column;
-                align-items: center;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
                 gap: 8px;
             }
 
             .nav-links a {
-                width: 100%;
+                width: auto;
                 text-align: center;
+                padding: 6px 12px;
             }
         }
 
@@ -700,14 +707,10 @@
                     // Update active nav link
                     document.querySelectorAll('.nav-links a').forEach(navLink => {
                         navLink.classList.remove('active');
+                        if (navLink.getAttribute('data-page') === targetPage) {
+                            navLink.classList.add('active');
+                        }
                     });
-                    
-                    // Set clicked link as active
-                    if (this.classList.contains('nav-link')) {
-                        document.querySelector(`.nav-links a[data-page="${targetPage}"]`).classList.add('active');
-                    } else {
-                        this.classList.add('active');
-                    }
                     
                     // Scroll to top
                     window.scrollTo(0, 0);
