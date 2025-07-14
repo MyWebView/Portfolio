@@ -73,7 +73,7 @@
             display: flex;
             justify-content: center;
             margin-bottom: 30px;
-            background: var(--glass);
+            background: rgba(30, 41, 59, 0.8);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border: 1px solid var(--glass-border);
@@ -117,17 +117,17 @@
             opacity: 1;
         }
 
-        .nav-links a.active::before {
-            opacity: 1;
-        }
-
         .nav-links a.active {
             font-weight: 600;
         }
 
+        .nav-links a.active::before {
+            opacity: 1;
+        }
+
         /* Glass Morphism Card */
         .card {
-            background: var(--glass);
+            background: rgba(30, 41, 59, 0.8);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border: 1px solid var(--glass-border);
@@ -308,7 +308,7 @@
             background: rgba(255, 255, 255, 0.2);
         }
 
-        /* Organisation Cards */
+        /* Organisation Cards - Updated for black logos */
         .org-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -317,17 +317,15 @@
         }
 
         .org-card {
-            background: var(--glass);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
+            background: rgba(248, 250, 252, 0.9); /* Light background for black logos */
+            border: 1px solid rgba(30, 41, 59, 0.2);
             border-radius: 24px;
             padding: 30px;
             transition: all 0.3s ease;
             text-align: center;
             cursor: pointer;
             text-decoration: none;
-            color: inherit;
+            color: var(--dark); /* Dark text for light background */
             display: block;
         }
 
@@ -343,18 +341,20 @@
             max-height: 80px;
             object-fit: contain;
             margin-bottom: 20px;
+            filter: brightness(0); /* Make black logos visible on light background */
         }
 
         .org-name {
             font-size: 1.5rem;
             margin-bottom: 15px;
-            color: var(--primary-light);
+            color: var(--primary); /* Primary color for organization names */
         }
 
         .org-duration {
             font-size: 0.9rem;
             opacity: 0.8;
             margin-bottom: 20px;
+            color: var(--dark); /* Dark text for light background */
         }
 
         /* Contact Page */
@@ -365,7 +365,7 @@
         }
 
         .contact-card {
-            background: var(--glass);
+            background: rgba(30, 41, 59, 0.8);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border: 1px solid var(--glass-border);
@@ -373,6 +373,22 @@
             padding: 30px;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             text-align: center;
+            display: block;
+            text-decoration: none;
+            color: inherit;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
         }
 
         .contact-card:hover {
@@ -387,23 +403,38 @@
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
+            position: relative;
+            z-index: 2;
         }
 
         .contact-card h3 {
             font-size: 1.5rem;
             margin-bottom: 15px;
+            position: relative;
+            z-index: 2;
         }
 
-        .contact-card p, .contact-card a {
+        .contact-card p, .contact-card span {
             font-size: 1.1rem;
             opacity: 0.9;
             line-height: 1.6;
             color: var(--light);
             text-decoration: none;
+            position: relative;
+            z-index: 2;
         }
 
-        .contact-card a:hover {
+        .contact-card:hover p, .contact-card:hover span {
             text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9rem;
+            opacity: 0.7;
+            margin-top: 30px;
         }
 
         /* Responsive Design */
@@ -457,6 +488,17 @@
             .org-grid, .contact-grid {
                 grid-template-columns: 1fr;
             }
+
+            /* Remove backdrop-filter on mobile for better compatibility */
+            nav, .card, .contact-card {
+                background: rgba(30, 41, 59, 0.95);
+                backdrop-filter: none;
+                -webkit-backdrop-filter: none;
+            }
+            
+            .org-card {
+                background: rgba(248, 250, 252, 0.95);
+            }
         }
 
         @media (max-width: 480px) {
@@ -481,6 +523,27 @@
             .nav-links a {
                 width: 100%;
                 text-align: center;
+            }
+        }
+
+        /* Platform-specific fixes */
+        @media not all and (min-resolution:.001dpcm) { 
+            /* Safari specific fixes */
+            nav, .card, .contact-card {
+                -webkit-backdrop-filter: blur(20px) !important;
+            }
+        }
+
+        @supports (-webkit-touch-callout: none) {
+            /* iOS specific fixes */
+            .card, .contact-card {
+                background: rgba(30, 41, 59, 0.95);
+                backdrop-filter: none;
+                -webkit-backdrop-filter: none;
+            }
+            
+            .org-card {
+                background: rgba(248, 250, 252, 0.95);
             }
         }
     </style>
@@ -516,7 +579,7 @@
                         <a href="https://drive.google.com/file/d/1futzMrBGkegZiKjoQTZyrqh5aaEAr1Nd/view?usp=sharing" target="_blank" class="glossy-btn">
                             <i class="fas fa-file-alt"></i> View My Resume
                         </a>
-                        <a href="#contact" class="glossy-btn secondary-btn nav-link" data-page="contact">
+                        <a href="#" class="glossy-btn secondary-btn nav-link" data-page="contact">
                             <i class="fas fa-paper-plane"></i> Contact Me
                         </a>
                     </div>
@@ -551,21 +614,21 @@
             <div class="card">
                 <h2 class="section-title">Get In Touch</h2>
                 <div class="contact-grid">
-                    <div class="contact-card">
+                    <a href="mailto:pranayreddykandula@gmail.com" class="contact-card">
                         <i class="fas fa-envelope"></i>
                         <h3>Email</h3>
-                        <a href="mailto:pranayreddykandula@gmail.com">pranayreddykandula@gmail.com</a>
-                    </div>
-                    <div class="contact-card">
+                        <span>pranayreddykandula@gmail.com</span>
+                    </a>
+                    <a href="tel:+917730948618" class="contact-card">
                         <i class="fas fa-phone"></i>
                         <h3>Phone</h3>
-                        <a href="tel:7730948618">+91 7730948618</a>
-                    </div>
-                    <div class="contact-card">
+                        <span>+91 7730948618</span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/pranay-reddy-kandula-891a7125b" target="_blank" class="contact-card">
                         <i class="fab fa-linkedin"></i>
                         <h3>LinkedIn</h3>
-                        <a href="https://www.linkedin.com/in/pranay-reddy-kandula-891a7125b" target="_blank">Connect with me</a>
-                    </div>
+                        <span>Connect with me</span>
+                    </a>
                 </div>
             </div>
         </section>
@@ -613,9 +676,7 @@
             
             navLinks.forEach(link => {
                 link.addEventListener('click', function(e) {
-                    if (!this.classList.contains('nav-link')) {
-                        e.preventDefault();
-                    }
+                    e.preventDefault();
                     
                     // Get the target page
                     const targetPage = this.getAttribute('data-page');
@@ -626,41 +687,51 @@
                     });
                     
                     // Show the target section
-                    if (targetPage) {
-                        document.getElementById(targetPage).classList.add('active');
-                    }
+                    document.getElementById(targetPage).classList.add('active');
                     
                     // Update active nav link
                     document.querySelectorAll('.nav-links a').forEach(navLink => {
                         navLink.classList.remove('active');
                     });
                     
+                    // Set clicked link as active
                     if (this.classList.contains('nav-link')) {
                         document.querySelector(`.nav-links a[data-page="${targetPage}"]`).classList.add('active');
-                    } else if (this.parentElement.classList.contains('nav-links')) {
+                    } else {
                         this.classList.add('active');
                     }
                     
                     // Scroll to top
                     window.scrollTo(0, 0);
+                    
+                    // Update URL hash
+                    window.location.hash = targetPage;
                 });
             });
             
-            // Check for hash in URL
-            if (window.location.hash) {
-                const page = window.location.hash.substring(1);
-                if (['home', 'organisations', 'contact'].includes(page)) {
+            // Check for hash in URL on page load
+            function checkHash() {
+                const hash = window.location.hash.substring(1);
+                if (hash && ['home', 'organisations', 'contact'].includes(hash)) {
                     document.querySelectorAll('.page-section').forEach(section => {
                         section.classList.remove('active');
                     });
-                    document.getElementById(page).classList.add('active');
+                    document.getElementById(hash).classList.add('active');
                     
                     document.querySelectorAll('.nav-links a').forEach(navLink => {
                         navLink.classList.remove('active');
+                        if (navLink.getAttribute('data-page') === hash) {
+                            navLink.classList.add('active');
+                        }
                     });
-                    document.querySelector(`.nav-links a[data-page="${page}"]`).classList.add('active');
                 }
             }
+            
+            // Initial check
+            checkHash();
+            
+            // Listen for hash changes
+            window.addEventListener('hashchange', checkHash);
         });
     </script>
 </body>
