@@ -319,6 +319,7 @@
         .org-card {
             background: var(--glass);
             backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border: 1px solid var(--glass-border);
             border-radius: 24px;
             padding: 30px;
@@ -422,10 +423,12 @@
 
             .hero-title {
                 font-size: 1.2rem;
+                margin-bottom: 20px;
             }
 
             .hero-bio {
                 font-size: 1rem;
+                margin-bottom: 30px;
             }
 
             .profile-img {
@@ -441,6 +444,43 @@
             .glossy-btn {
                 width: 100%;
                 justify-content: center;
+            }
+
+            .card {
+                padding: 20px;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .org-grid, .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-name {
+                font-size: 2rem;
+            }
+
+            .greeting {
+                font-size: 1.5rem;
+            }
+
+            .hero-title {
+                font-size: 1rem;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                align-items: center;
+                gap: 8px;
+            }
+
+            .nav-links a {
+                width: 100%;
+                text-align: center;
             }
         }
     </style>
@@ -465,11 +505,11 @@
                 <div class="hero-content">
                     <div class="greeting">Hello</div>
                     <h1 class="hero-name">I'm Kandula Balapranayreddy</h1>
-                    <div class="hero-title">Content Writer & Engineer | SEO Specialist | AI Content Creator</div>
+                    <div class="hero-title">SEO Content Specialist | Content Writer</div>
                     <img src="img1.jpg" alt="Pranay Reddy" class="profile-img">
                     <p class="hero-bio">
                         I craft compelling content that bridges technology and creativity. 
-                        With expertise in SEO optimization and AI-driven content solutions, 
+                        With expertise in SEO optimization and content creation, 
                         I help brands communicate effectively in the digital space.
                     </p>
                     <div class="hero-actions">
