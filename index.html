@@ -455,13 +455,18 @@
         @media (max-width: 768px) {
             .nav-links {
                 gap: 10px;
-                flex-direction: row; /* Ensure horizontal layout on mobile */
+                flex-direction: row;
             }
 
             .nav-links a {
                 padding: 8px 16px;
                 font-size: 0.9rem;
-                white-space: nowrap; /* Prevent text wrapping */
+                white-space: nowrap;
+            }
+
+            /* Ensure active tab gradient works on mobile */
+            .nav-links a.active::before {
+                opacity: 1 !important;
             }
 
             .hero-name {
@@ -530,7 +535,6 @@
                 font-size: 1rem;
             }
 
-            /* Keep navigation horizontal even on very small screens */
             .nav-links {
                 flex-direction: row;
                 flex-wrap: wrap;
