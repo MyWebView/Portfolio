@@ -2,20 +2,19 @@
 <html lang="en">
 <head>
     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XDCR0YW4XC"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-XDCR0YW4XC');
-</script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XDCR0YW4XC"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XDCR0YW4XC');
+    </script>
     <meta charset="UTF-8">
     <meta name="description" content="Pranay Reddy – SEO Content Specialist | Expert in Website Content, Keyword Research & Digita Product Marketing.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-site-verification" content="2G7QYLo-13aW6IqRk_av21_Iy4g6g1MRpECo7pL1XM8" />
     <title>Pranay Reddy | Portfolio</title>
-     <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="icon" type="image/png" href="favicon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Varela+Round&display=swap" rel="stylesheet">
     <style>
@@ -371,6 +370,64 @@
             color: var(--dark); /* Dark text for light background */
         }
 
+        /* Experience Details */
+        .experience-details {
+            display: none;
+        }
+
+        .experience-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .experience-position {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .experience-duration {
+            font-size: 1rem;
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
+
+        .experience-responsibilities {
+            list-style-type: none;
+        }
+
+        .experience-responsibilities li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 25px;
+            line-height: 1.5;
+        }
+
+        .experience-responsibilities li:before {
+            content: "●";
+            color: var(--primary);
+            position: absolute;
+            left: 0;
+        }
+
+        .company-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .company-btn:hover {
+            background: var(--primary-light);
+            transform: translateY(-2px);
+        }
+
         /* Contact Page */
         .contact-grid {
             display: grid;
@@ -451,6 +508,68 @@
             margin-top: 30px;
         }
 
+        /* Experience Details Full View */
+        .experience-full-view {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(30, 41, 59, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 1000;
+            display: none;
+            overflow-y: auto;
+            padding: 20px;
+        }
+        
+        .experience-full-view.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .experience-full-container {
+            max-width: 800px;
+            margin: 40px auto;
+            background: rgba(248, 250, 252, 0.95);
+            border-radius: 24px;
+            padding: 70px 40px 40px; /* Increased top padding */
+            color: var(--dark);
+            position: relative;
+        }
+        
+        .back-button {
+            position: fixed; /* Changed to fixed positioning */
+            top: 20px;
+            left: 20px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 10px 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            z-index: 1001; /* Ensure it's above content */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        
+        .back-button:hover {
+            background: var(--primary-light);
+            transform: translateY(-2px);
+        }
+
+        /* Experience Header */
+        .experience-header {
+            position: relative;
+            padding-top: 10px;
+            margin-bottom: 25px;
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .nav-links {
@@ -517,8 +636,21 @@
                 -webkit-backdrop-filter: none;
             }
             
-            .org-card {
+            .org-card, .experience-full-container {
                 background: rgba(248, 250, 252, 0.95);
+            }
+
+            .experience-full-container {
+                padding: 60px 20px 20px;
+                margin: 20px auto;
+            }
+
+            /* Fixed back button adjustments */
+            .back-button {
+                top: 15px;
+                left: 15px;
+                padding: 8px 15px;
+                font-size: 0.9rem;
             }
         }
 
@@ -547,6 +679,29 @@
                 text-align: center;
                 padding: 6px 12px;
             }
+
+            .back-button {
+                top: 10px;
+                left: 10px;
+                padding: 8px 15px;
+                font-size: 0.9rem;
+            }
+
+            /* Center profile image on mobile */
+            .hero {
+                padding-top: 20px;
+            }
+            
+            .hero-content {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            /* Improve button spacing */
+            .hero-actions {
+                gap: 15px;
+            }
         }
 
         /* Platform-specific fixes */
@@ -565,7 +720,7 @@
                 -webkit-backdrop-filter: none;
             }
             
-            .org-card {
+            .org-card, .experience-full-container {
                 background: rgba(248, 250, 252, 0.95);
             }
         }
@@ -613,20 +768,58 @@
         <!-- Organisations Page -->
         <section id="organisations" class="page-section">
             <div class="card">
+                <h2 class="section-title">Professional Experience</h2>
                 <div class="org-grid">
                     <!-- Inncircles Technologies -->
-                    <a href="https://inncircles.com/" target="_blank" class="org-card">
+                    <div class="org-card" data-company="inncircles">
                         <img src="img2.jpg" alt="Inncircles Technologies" class="org-logo">
                         <h3 class="org-name">Inncircles Technologies</h3>
                         <div class="org-duration">Content Marketer - SEO | Dec 2024 - Present</div>
-                    </a>
+                    </div>
 
                     <!-- GlobalLogic Technologies -->
-                    <a href="https://www.globallogic.com/" target="_blank" class="org-card">
+                    <div class="org-card" data-company="globallogic">
                         <img src="img3.jpg" alt="GlobalLogic" class="org-logo">
                         <h3 class="org-name">GlobalLogic Technologies</h3>
                         <div class="org-duration">Associate Analyst - Content Engineering | Oct 2023 - Oct 2024</div>
-                    </a>
+                    </div>
+                </div>
+
+                <!-- Inncircles Experience Details (hidden, used as template) -->
+                <div id="inncircles-details" class="experience-details">
+                    <div class="experience-header">
+                        <h3 class="experience-title">Inncircles Technologies</h3>
+                    </div>
+                    <div class="experience-position">Content Marketer - SEO</div>
+                    <div class="experience-duration">Dec 2024 - Present</div>
+                    <ul class="experience-responsibilities">
+                        <li>Optimized website content to enhance search engine rankings and drive organic traffic.</li>
+                        <li>Conducted comprehensive keyword research and developed targeted strategies to improve SEO.</li>
+                        <li>Wrote SEO-optimized blog posts to increase web traffic and engage the target audience.</li>
+                        <li>Wrote thought leadership reports on future trends and company insights.</li>
+                        <li>Created SEO-driven video scripts for product promotion videos.</li>
+                        <li>Designed SEO-friendly brochures to support lead generation and brand awareness.</li>
+                        <li>Developed SEO-focused proposals outlining strategies for improving clients' online presence.</li>
+                        <li>Wrote detailed case studies to highlight the success and effectiveness of the product.</li>
+                    </ul>
+                    <a href="https://inncircles.com/" target="_blank" class="company-btn">Meet Inncircles Technologies</a>
+                </div>
+
+                <!-- GlobalLogic Experience Details (hidden, used as template) -->
+                <div id="globallogic-details" class="experience-details">
+                    <div class="experience-header">
+                        <h3 class="experience-title">GlobalLogic Technologies</h3>
+                    </div>
+                    <div class="experience-position">Associate Analyst - Content Engineering</div>
+                    <div class="experience-duration">Oct 2023 - Oct 2024</div>
+                    <ul class="experience-responsibilities">
+                        <li>Leveraged content engineering expertise to train an AI chatbot and analysed various data models and extracted prompts and solutions to populate the chatbot's knowledge base.</li>
+                        <li>Ensured high-quality data input to achieve optimal chatbot performance.</li>
+                        <li>Timely deliver data of different projects at the highest possible quality standard.</li>
+                        <li>Quickly learned new project requirements.</li>
+                        <li>Attended training and development sessions to stay up to date with the latest project improvement.</li>
+                    </ul>
+                    <a href="https://www.globallogic.com/" target="_blank" class="company-btn">Meet GlobalLogic Technologies</a>
                 </div>
             </div>
         </section>
@@ -654,6 +847,16 @@
         <footer>
             <p>© 2025 KANDULA BALAPRANAYREDDY | Portfolio</p>
         </footer>
+    </div>
+
+    <!-- Experience Full View Overlay -->
+    <div class="experience-full-view">
+        <div class="experience-full-container">
+            <button class="back-button">
+                <i class="fas fa-arrow-left"></i> Back
+            </button>
+            <div id="full-view-content"></div>
+        </div>
     </div>
 
     <script>
@@ -746,6 +949,67 @@
             
             // Listen for hash changes
             window.addEventListener('hashchange', checkHash);
+
+            // Back button functionality
+            const backButton = document.querySelector('.back-button');
+            backButton.addEventListener('click', function() {
+                document.querySelector('.experience-full-view').classList.remove('active');
+                window.scrollTo(0, 0);
+            });
+
+            // Company card click handlers
+            const companyCards = document.querySelectorAll('.org-card');
+            companyCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const company = this.getAttribute('data-company');
+                    const detailsContent = document.getElementById(`${company}-details`).innerHTML;
+                    
+                    // Set the content for the full view
+                    document.getElementById('full-view-content').innerHTML = detailsContent;
+                    
+                    // Show the full view
+                    document.querySelector('.experience-full-view').classList.add('active');
+                    
+                    // Update URL hash
+                    window.location.hash = `organisations/${company}`;
+                });
+            });
+
+            // Check for experience details in URL on page load
+            function checkExperienceHash() {
+                const hash = window.location.hash.substring(1);
+                const parts = hash.split('/');
+                
+                if (parts[0] === 'organisations' && parts.length > 1) {
+                    const company = parts[1];
+                    if (['inncircles', 'globallogic'].includes(company)) {
+                        // Navigate to organisations page first
+                        document.querySelectorAll('.page-section').forEach(section => {
+                            section.classList.remove('active');
+                        });
+                        document.getElementById('organisations').classList.add('active');
+                        
+                        // Update active nav link
+                        document.querySelectorAll('.nav-links a').forEach(navLink => {
+                            navLink.classList.remove('active');
+                            if (navLink.getAttribute('data-page') === 'organisations') {
+                                navLink.classList.add('active');
+                            }
+                        });
+                        
+                        // Show the full view
+                        const detailsContent = document.getElementById(`${company}-details`).innerHTML;
+                        document.getElementById('full-view-content').innerHTML = detailsContent;
+                        document.querySelector('.experience-full-view').classList.add('active');
+                    }
+                }
+            }
+            
+            // Initial check for experience details
+            checkExperienceHash();
+            
+            // Listen for hash changes for experience details
+            window.addEventListener('hashchange', checkExperienceHash);
         });
     </script>
 </body>
