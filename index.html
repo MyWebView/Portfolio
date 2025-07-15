@@ -10,11 +10,19 @@
       gtag('config', 'G-XDCR0YW4XC');
     </script>
     <meta charset="UTF-8">
-    <meta name="description" content="Pranay Reddy – SEO Content Specialist | Expert in Website Content, Keyword Research & Digita Product Marketing.">
+    <meta name="description" content="Pranay Reddy – SEO Content Specialist | Expert in Website Content, Keyword Research & Digital Product Marketing.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-site-verification" content="2G7QYLo-13aW6IqRk_av21_Iy4g6g1MRpECo7pL1XM8" />
     <title>Pranay Reddy | Portfolio</title>
     <link rel="icon" type="image/png" href="favicon.png">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Varela+Round&display=swap" as="style">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com/ajax/libs">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Varela+Round&display=swap" rel="stylesheet">
     <style>
@@ -43,7 +51,49 @@
             min-height: 100vh;
             position: relative;
             overflow-x: hidden;
-            padding-top: 90px; /* Added padding to account for fixed nav */
+            padding-top: 90px;
+            touch-action: pan-y;
+            overscroll-behavior: contain;
+            will-change: transform;
+            transform: translateZ(0);
+            backface-visibility: hidden;
+            perspective: 1000px;
+        }
+
+        /* Stretching effect container */
+        .stretch-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .stretch-effect {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient);
+            opacity: 0;
+            transform: scaleY(0.5);
+            transform-origin: top center;
+            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), 
+                        opacity 0.4s ease;
+            will-change: transform, opacity;
+        }
+
+        .stretch-bottom {
+            transform-origin: bottom center;
+        }
+
+        .stretch-visible {
+            opacity: 0.15;
+            transform: scaleY(1);
         }
 
         /* Space Rocks Animation */
@@ -55,6 +105,7 @@
             height: 100%;
             z-index: -1;
             overflow: hidden;
+            will-change: transform;
         }
 
         .rock {
@@ -63,6 +114,7 @@
             border-radius: 50%;
             filter: blur(1px);
             animation: float linear infinite;
+            will-change: transform;
         }
 
         @keyframes float {
@@ -78,6 +130,7 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
+            will-change: contents;
         }
 
         /* Navigation - Made sticky */
@@ -97,6 +150,7 @@
             width: 100%;
             z-index: 1000;
             transition: all 0.3s ease;
+            will-change: transform;
         }
 
         .nav-links {
@@ -116,6 +170,7 @@
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            will-change: transform;
         }
 
         .nav-links a::before {
@@ -155,6 +210,7 @@
             margin-bottom: 30px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            will-change: transform;
         }
 
         .card:hover {
@@ -177,6 +233,7 @@
             object-fit: cover;
             border: 4px solid rgba(255, 255, 255, 0.1);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            will-change: transform;
         }
 
         /* Glossy Button */
@@ -198,6 +255,7 @@
             transition: all 0.3s ease;
             margin-top: 20px;
             font-size: 1.1rem;
+            will-change: transform;
         }
 
         .glossy-btn::before {
@@ -254,6 +312,7 @@
         .page-section {
             display: none;
             animation: fadeIn 0.5s ease;
+            will-change: opacity, transform;
         }
 
         .page-section.active {
@@ -293,6 +352,7 @@
             background-clip: text;
             -webkit-text-fill-color: transparent;
             line-height: 1.2;
+            will-change: transform;
         }
 
         .hero-title {
@@ -346,6 +406,7 @@
             text-decoration: none;
             color: var(--dark); /* Dark text for light background */
             display: block;
+            will-change: transform;
         }
 
         .org-card:hover {
@@ -427,6 +488,7 @@
             text-decoration: none;
             font-weight: 600;
             transition: all 0.3s ease;
+            will-change: transform;
         }
 
         .company-btn:hover {
@@ -456,6 +518,7 @@
             cursor: pointer;
             position: relative;
             overflow: hidden;
+            will-change: transform;
         }
 
         .contact-card::after {
@@ -562,6 +625,7 @@
             transition: all 0.3s ease;
             z-index: 1001; /* Ensure it's above content */
             box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            will-change: transform;
         }
         
         .back-button:hover {
@@ -720,6 +784,11 @@
             nav {
                 padding: 10px 15px; /* Reduce padding on small screens */
             }
+            
+            /* Reduce animation intensity on mobile */
+            .stretch-effect {
+                transition-duration: 0.4s;
+            }
         }
 
         /* Platform-specific fixes */
@@ -741,10 +810,20 @@
             .org-card, .experience-full-container {
                 background: rgba(248, 250, 252, 0.95);
             }
+            
+            body {
+                -webkit-overflow-scrolling: touch;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Stretching effect elements -->
+    <div class="stretch-container">
+        <div class="stretch-effect stretch-top"></div>
+        <div class="stretch-effect stretch-bottom"></div>
+    </div>
+    
     <!-- Space Rocks Background -->
     <div class="space-rocks" id="spaceRocks"></div>
 
@@ -862,170 +941,211 @@
             </div>
         </section>
 
-    
+        <footer>
+            <p>© 2025 KANDULA BALAPRANAYREDDY | Portfolio</p>
+        </footer>
     </div>
 
     <!-- Experience Full View Overlay -->
     <div class="experience-full-view">
         <div class="experience-full-container">
             <button class="back-button">
-                <i class="fas fa-arrow-left"></i>Back
+                <i class="fas fa-arrow-left"></i> Back to Experience
             </button>
             <div id="full-view-content"></div>
         </div>
     </div>
 
     <script>
-        // Create space rocks animation
-        function createSpaceRocks() {
-            const container = document.getElementById('spaceRocks');
-            const rockCount = 20;
-            
-            for (let i = 0; i < rockCount; i++) {
-                const rock = document.createElement('div');
-                rock.classList.add('rock');
-                
-                // Random size between 2px and 10px
-                const size = Math.random() * 8 + 2;
-                rock.style.width = `${size}px`;
-                rock.style.height = `${size}px`;
-                
-                // Random position
-                rock.style.left = `${Math.random() * 100}%`;
-                rock.style.bottom = `-${size}px`;
-                
-                // Random animation duration between 20s and 50s
-                const duration = Math.random() * 30 + 20;
-                rock.style.animationDuration = `${duration}s`;
-                
-                // Random delay
-                rock.style.animationDelay = `${Math.random() * 10}s`;
-                
-                container.appendChild(rock);
-            }
-        }
-
-        // Navigation functionality
+        // Optimized code with performance improvements
         document.addEventListener('DOMContentLoaded', function() {
-            createSpaceRocks();
-            
-            const navLinks = document.querySelectorAll('.nav-links a, .nav-link');
-            
-            navLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
+            // Create space rocks animation
+            function createSpaceRocks() {
+                const container = document.getElementById('spaceRocks');
+                const rockCount = 15; // Reduced for performance
+                
+                for (let i = 0; i < rockCount; i++) {
+                    const rock = document.createElement('div');
+                    rock.classList.add('rock');
                     
-                    // Get the target page
-                    const targetPage = this.getAttribute('data-page');
+                    const size = Math.random() * 8 + 2;
+                    rock.style.width = `${size}px`;
+                    rock.style.height = `${size}px`;
                     
-                    // Hide all sections
-                    document.querySelectorAll('.page-section').forEach(section => {
-                        section.classList.remove('active');
-                    });
+                    rock.style.left = `${Math.random() * 100}%`;
+                    rock.style.bottom = `-${size}px`;
                     
-                    // Show the target section
-                    document.getElementById(targetPage).classList.add('active');
+                    const duration = Math.random() * 30 + 20;
+                    rock.style.animationDuration = `${duration}s`;
+                    rock.style.animationDelay = `${Math.random() * 10}s`;
                     
-                    // Update active nav link
-                    document.querySelectorAll('.nav-links a').forEach(navLink => {
-                        navLink.classList.remove('active');
-                        if (navLink.getAttribute('data-page') === targetPage) {
-                            navLink.classList.add('active');
-                        }
-                    });
-                    
-                    // Scroll to top
-                    window.scrollTo(0, 90); // Adjusted for fixed nav height
-                    
-                    // Update URL hash
-                    window.location.hash = targetPage;
-                });
-            });
-            
-            // Check for hash in URL on page load
-            function checkHash() {
-                const hash = window.location.hash.substring(1);
-                if (hash && ['home', 'organisations', 'contact'].includes(hash)) {
-                    document.querySelectorAll('.page-section').forEach(section => {
-                        section.classList.remove('active');
-                    });
-                    document.getElementById(hash).classList.add('active');
-                    
-                    document.querySelectorAll('.nav-links a').forEach(navLink => {
-                        navLink.classList.remove('active');
-                        if (navLink.getAttribute('data-page') === hash) {
-                            navLink.classList.add('active');
-                        }
-                    });
+                    container.appendChild(rock);
                 }
             }
             
-            // Initial check
-            checkHash();
-            
-            // Listen for hash changes
-            window.addEventListener('hashchange', checkHash);
-
-            // Back button functionality
-            const backButton = document.querySelector('.back-button');
-            backButton.addEventListener('click', function() {
-                document.querySelector('.experience-full-view').classList.remove('active');
-                window.scrollTo(0, 90); // Adjusted for fixed nav height
-            });
-
-            // Company card click handlers
-            const companyCards = document.querySelectorAll('.org-card');
-            companyCards.forEach(card => {
-                card.addEventListener('click', function() {
-                    const company = this.getAttribute('data-company');
-                    const detailsContent = document.getElementById(`${company}-details`).innerHTML;
-                    
-                    // Set the content for the full view
-                    document.getElementById('full-view-content').innerHTML = detailsContent;
-                    
-                    // Show the full view
-                    document.querySelector('.experience-full-view').classList.add('active');
-                    
-                    // Update URL hash
-                    window.location.hash = `organisations/${company}`;
-                });
-            });
-
-            // Check for experience details in URL on page load
-            function checkExperienceHash() {
-                const hash = window.location.hash.substring(1);
-                const parts = hash.split('/');
+            // Create stretching effect
+            function setupStretchEffect() {
+                const stretchTop = document.querySelector('.stretch-top');
+                const stretchBottom = document.querySelector('.stretch-bottom');
+                let lastScrollY = window.scrollY;
+                let isScrolling = false;
                 
-                if (parts[0] === 'organisations' && parts.length > 1) {
-                    const company = parts[1];
-                    if (['inncircles', 'globallogic'].includes(company)) {
-                        // Navigate to organisations page first
+                function handleScroll() {
+                    const scrollY = window.scrollY;
+                    const scrollDirection = scrollY > lastScrollY ? 'down' : 'up';
+                    lastScrollY = scrollY;
+                    
+                    // Skip if already animating
+                    if (isScrolling) return;
+                    
+                    // Get scroll position relative to document boundaries
+                    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+                    const windowHeight = window.innerHeight;
+                    const documentHeight = document.documentElement.scrollHeight;
+                    
+                    // Top stretching effect
+                    if (scrollTop <= 0 && scrollDirection === 'up') {
+                        isScrolling = true;
+                        stretchTop.classList.add('stretch-visible');
+                        
+                        setTimeout(() => {
+                            stretchTop.classList.remove('stretch-visible');
+                            isScrolling = false;
+                        }, 600);
+                    }
+                    
+                    // Bottom stretching effect
+                    if (scrollTop + windowHeight >= documentHeight - 5 && scrollDirection === 'down') {
+                        isScrolling = true;
+                        stretchBottom.classList.add('stretch-visible');
+                        
+                        setTimeout(() => {
+                            stretchBottom.classList.remove('stretch-visible');
+                            isScrolling = false;
+                        }, 600);
+                    }
+                }
+                
+                // Use passive scroll event for better performance
+                window.addEventListener('scroll', handleScroll, { passive: true });
+            }
+            
+            // Navigation functionality
+            function setupNavigation() {
+                const navLinks = document.querySelectorAll('.nav-links a, .nav-link');
+                
+                navLinks.forEach(link => {
+                    link.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const targetPage = this.getAttribute('data-page');
+                        
                         document.querySelectorAll('.page-section').forEach(section => {
                             section.classList.remove('active');
                         });
-                        document.getElementById('organisations').classList.add('active');
                         
-                        // Update active nav link
+                        document.getElementById(targetPage).classList.add('active');
+                        
                         document.querySelectorAll('.nav-links a').forEach(navLink => {
                             navLink.classList.remove('active');
-                            if (navLink.getAttribute('data-page') === 'organisations') {
+                            if (navLink.getAttribute('data-page') === targetPage) {
                                 navLink.classList.add('active');
                             }
                         });
                         
-                        // Show the full view
-                        const detailsContent = document.getElementById(`${company}-details`).innerHTML;
-                        document.getElementById('full-view-content').innerHTML = detailsContent;
-                        document.querySelector('.experience-full-view').classList.add('active');
+                        window.scrollTo(0, 90);
+                        window.location.hash = targetPage;
+                    });
+                });
+                
+                // Check for hash in URL on page load
+                function checkHash() {
+                    const hash = window.location.hash.substring(1);
+                    if (hash && ['home', 'organisations', 'contact'].includes(hash)) {
+                        document.querySelectorAll('.page-section').forEach(section => {
+                            section.classList.remove('active');
+                        });
+                        document.getElementById(hash).classList.add('active');
+                        
+                        document.querySelectorAll('.nav-links a').forEach(navLink => {
+                            navLink.classList.remove('active');
+                            if (navLink.getAttribute('data-page') === hash) {
+                                navLink.classList.add('active');
+                            }
+                        });
                     }
                 }
+                
+                checkHash();
+                window.addEventListener('hashchange', checkHash);
             }
             
-            // Initial check for experience details
-            checkExperienceHash();
+            // Experience details functionality
+            function setupExperienceDetails() {
+                const backButton = document.querySelector('.back-button');
+                backButton.addEventListener('click', function() {
+                    document.querySelector('.experience-full-view').classList.remove('active');
+                    window.scrollTo(0, 90);
+                });
+                
+                const companyCards = document.querySelectorAll('.org-card');
+                companyCards.forEach(card => {
+                    card.addEventListener('click', function() {
+                        const company = this.getAttribute('data-company');
+                        const detailsContent = document.getElementById(`${company}-details`).innerHTML;
+                        
+                        document.getElementById('full-view-content').innerHTML = detailsContent;
+                        document.querySelector('.experience-full-view').classList.add('active');
+                        window.location.hash = `organisations/${company}`;
+                    });
+                });
+                
+                // Check for experience details in URL on page load
+                function checkExperienceHash() {
+                    const hash = window.location.hash.substring(1);
+                    const parts = hash.split('/');
+                    
+                    if (parts[0] === 'organisations' && parts.length > 1) {
+                        const company = parts[1];
+                        if (['inncircles', 'globallogic'].includes(company)) {
+                            document.querySelectorAll('.page-section').forEach(section => {
+                                section.classList.remove('active');
+                            });
+                            document.getElementById('organisations').classList.add('active');
+                            
+                            document.querySelectorAll('.nav-links a').forEach(navLink => {
+                                navLink.classList.remove('active');
+                                if (navLink.getAttribute('data-page') === 'organisations') {
+                                    navLink.classList.add('active');
+                                }
+                            });
+                            
+                            const detailsContent = document.getElementById(`${company}-details`).innerHTML;
+                            document.getElementById('full-view-content').innerHTML = detailsContent;
+                            document.querySelector('.experience-full-view').classList.add('active');
+                        }
+                    }
+                }
+                
+                checkExperienceHash();
+                window.addEventListener('hashchange', checkExperienceHash);
+            }
             
-            // Listen for hash changes for experience details
-            window.addEventListener('hashchange', checkExperienceHash);
+            // Initialize all components
+            function init() {
+                createSpaceRocks();
+                setupStretchEffect();
+                setupNavigation();
+                setupExperienceDetails();
+                
+                // Preload images
+                ['img1.jpg', 'img2.jpg', 'img3.jpg'].forEach(img => {
+                    const image = new Image();
+                    image.src = img;
+                });
+            }
+            
+            // Start initialization
+            init();
         });
     </script>
 </body>
