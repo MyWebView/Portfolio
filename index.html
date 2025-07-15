@@ -43,6 +43,7 @@
             min-height: 100vh;
             position: relative;
             overflow-x: hidden;
+            padding-top: 90px; /* Added padding to account for fixed nav */
         }
 
         /* Space Rocks Animation */
@@ -79,18 +80,23 @@
             padding: 20px;
         }
 
-        /* Navigation */
+        /* Navigation - Made sticky */
         nav {
             display: flex;
             justify-content: center;
-            margin-bottom: 30px;
-            background: rgba(30, 41, 59, 0.8);
+            background: rgba(30, 41, 59, 0.95);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border: 1px solid var(--glass-border);
-            border-radius: 24px;
+            border-radius: 0 0 24px 24px;
             padding: 15px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
         }
 
         .nav-links {
@@ -572,6 +578,10 @@
 
         /* Responsive Design */
         @media (max-width: 768px) {
+            body {
+                padding-top: 80px; /* Adjusted for mobile nav height */
+            }
+            
             .nav-links {
                 gap: 10px;
                 flex-direction: row;
@@ -655,6 +665,10 @@
         }
 
         @media (max-width: 480px) {
+            body {
+                padding-top: 70px; /* Adjusted for small mobile nav height */
+            }
+            
             .hero-name {
                 font-size: 2rem;
             }
@@ -702,6 +716,10 @@
             .hero-actions {
                 gap: 15px;
             }
+            
+            nav {
+                padding: 10px 15px; /* Reduce padding on small screens */
+            }
         }
 
         /* Platform-specific fixes */
@@ -730,16 +748,16 @@
     <!-- Space Rocks Background -->
     <div class="space-rocks" id="spaceRocks"></div>
 
-    <div class="container">
-        <!-- Navigation -->
-        <nav>
-            <ul class="nav-links">
-                <li><a href="#" class="active" data-page="home">Home</a></li>
-                <li><a href="#" data-page="organisations">Experience</a></li>
-                <li><a href="#" data-page="contact">Contact</a></li>
-            </ul>
-        </nav>
+    <!-- Navigation - Now fixed at top -->
+    <nav>
+        <ul class="nav-links">
+            <li><a href="#" class="active" data-page="home">Home</a></li>
+            <li><a href="#" data-page="organisations">Experience</a></li>
+            <li><a href="#" data-page="contact">Contact</a></li>
+        </ul>
+    </nav>
 
+    <div class="container">
         <!-- Home Page -->
         <section id="home" class="page-section active">
             <div class="hero">
@@ -844,16 +862,14 @@
             </div>
         </section>
 
-        <footer>
-            <p>© 2025 KANDULA BALAPRANAYREDDY | Portfolio</p>
-        </footer>
+    
     </div>
 
     <!-- Experience Full View Overlay -->
     <div class="experience-full-view">
         <div class="experience-full-container">
             <button class="back-button">
-                <i class="fas fa-arrow-left"></i> Back
+                <i class="fas fa-arrow-left"></i>Back
             </button>
             <div id="full-view-content"></div>
         </div>
@@ -919,7 +935,7 @@
                     });
                     
                     // Scroll to top
-                    window.scrollTo(0, 0);
+                    window.scrollTo(0, 90); // Adjusted for fixed nav height
                     
                     // Update URL hash
                     window.location.hash = targetPage;
@@ -954,7 +970,7 @@
             const backButton = document.querySelector('.back-button');
             backButton.addEventListener('click', function() {
                 document.querySelector('.experience-full-view').classList.remove('active');
-                window.scrollTo(0, 0);
+                window.scrollTo(0, 90); // Adjusted for fixed nav height
             });
 
             // Company card click handlers
